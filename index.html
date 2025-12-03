@@ -335,104 +335,94 @@
         gap:4px;
       }
     }
-    .intro-overlay{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at top,#00b4d8 0,#0077b6 40%,#002b4a 100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
-  overflow:hidden;
-  animation:introFadeIn .8s ease-out;
-}
-@keyframes introFadeIn{
-  from{opacity:0;transform:scale(1.02);}
-  to{opacity:1;transform:scale(1);}
-}
-.intro-content{
-  position:relative;
-  text-align:center;
-  color:#e0f7ff;
-}
-.intro-logo-main{
-  width:220px;
-  max-width:70%;
-  animation:logoDrop 1.2s ease-out forwards;
-}
-@keyframes logoDrop{
-  0%{transform:translateY(-80px) scale(.8);opacity:0;}
-  60%{transform:translateY(10px) scale(1.02);opacity:1;}
-  100%{transform:translateY(0) scale(1);}
-}
-.intro-rain{
-  position:absolute;
-  inset:-40vh -40vw 0;
-  pointer-events:none;
-  background-image:repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,.35) 0,
-    rgba(255,255,255,.35) 2px,
-    transparent 2px,
-    transparent 12px
-  );
-  background-size:2px 20px;
-  opacity:.35;
-  animation:rainMove 1.5s linear infinite;
-}
-@keyframes rainMove{
-  from{transform:translateY(-40px);}
-  to{transform:translateY(40px);}
-}
-.intro-text{
-  margin-top:26px;
-  font-size:1.05rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.intro-btn{
-  margin-top:28px;
-  padding:12px 26px;
-  border-radius:999px;
-  border:none;
-  background:#ffffff;
-  color:#0077b6;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 10px 26px rgba(0,0,0,.4);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  transition:transform .2s,box-shadow .2s;
-}
-.intro-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 34px rgba(0,0,0,.55);
-}
 
+    /* INTRO OVERLAY */
+    .intro-overlay{
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at top,#00b4d8 0,#0077b6 40%,#002b4a 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      overflow:hidden;
+      animation:introFadeIn .8s ease-out;
+    }
+    @keyframes introFadeIn{
+      from{opacity:0;transform:scale(1.02);}
+      to{opacity:1;transform:scale(1);}
+    }
+    .intro-content{
+      position:relative;
+      text-align:center;
+      color:#e0f7ff;
+    }
+    .intro-logo-main{
+      width:220px;
+      max-width:70%;
+      animation:logoDrop 1.2s ease-out forwards;
+    }
+    @keyframes logoDrop{
+      0%{transform:translateY(-80px) scale(.8);opacity:0;}
+      60%{transform:translateY(10px) scale(1.02);opacity:1;}
+      100%{transform:translateY(0) scale(1);}
+    }
+    .intro-rain{
+      position:absolute;
+      inset:-40vh -40vw 0;
+      pointer-events:none;
+      background-image:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.35) 0,
+        rgba(255,255,255,.35) 2px,
+        transparent 2px,
+        transparent 12px
+      );
+      background-size:2px 20px;
+      opacity:.35;
+      animation:rainMove 1.5s linear infinite;
+    }
+    @keyframes rainMove{
+      from{transform:translateY(-40px);}
+      to{transform:translateY(40px);}
+    }
+    .intro-text{
+      margin-top:26px;
+      font-size:1.05rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .intro-btn{
+      margin-top:28px;
+      padding:12px 26px;
+      border-radius:999px;
+      border:none;
+      background:#ffffff;
+      color:#0077b6;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 10px 26px rgba(0,0,0,.4);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .intro-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(0,0,0,.55);
+    }
   </style>
 </head>
-  <script>
-  // Bouton "Continuer" : on cache l'intro et on descend aux contacts
-  document.getElementById('introContinue').addEventListener('click', function () {
-    const intro = document.getElementById('intro');
-    intro.style.transition = 'opacity 0.6s ease';
-    intro.style.opacity = '0';
-    setTimeout(function(){ intro.style.display = 'none'; }, 600);
-    document.getElementById('contacts').scrollIntoView({behavior:'smooth'});
-  });
-</script>
-
 <body>
   <!-- INTRO ANIMEE AVANT LE SITE -->
-<div class="intro-overlay" id="intro">
-  <div class="intro-content">
-    <img src="solana.d2.png" alt="Solana France" class="intro-logo-main">
-    <div class="intro-rain"></div>
-    <p class="intro-text">Semences de pommes de terre · Innovation & proximité</p>
-    <button class="intro-btn" id="introContinue">Continuer vers les contacts</button>
+  <div class="intro-overlay" id="intro">
+    <div class="intro-content">
+      <img src="solana.d2.png" alt="Solana France" class="intro-logo-main">
+      <div class="intro-rain"></div>
+      <p class="intro-text">Semences de pommes de terre · Innovation & proximité</p>
+      <button class="intro-btn" id="introContinue">Continuer vers les contacts</button>
+    </div>
   </div>
-</div>
 
   <!-- HERO INTRO CLIENT -->
   <section class="hero" id="top">
@@ -467,7 +457,7 @@
           <li><span>✔</span><span>Conseils techniques variétaux et itinéraires culturaux.</span></li>
           <li><span>✔</span><span>Questions administratives, facturation et contrats.</span></li>
           <li><span>✔</span><span>Échanges commerciaux et développement de partenariats.</span></li>
-           <li><span>✔</span><span> la production et la commercialisation de variétés de pommes de terrer.</span></li>
+          <li><span>✔</span><span>Production et commercialisation de variétés de pommes de terre.</span></li>
         </ul>
       </aside>
     </div>
@@ -568,4 +558,58 @@
             <div><a href="tel:+33667971316">+33 6 67 97 13 16</a></div>
           </div>
           <div class="contact-info">
-            <div>Mail général
+            <div>Mail général : <a href="mailto:contact.solanafrance@solana.de">contact.solanafrance@solana.de</a></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="pomme.de1.png" alt="" class="service-potato">
+          <h3><span class="service-icon">🚚</span> Logistique</h3>
+          <div class="contact-info">
+            <div><a href="mailto:logistique@solana.de">logistique@solana.de</a></div>
+            <div>Organisation des transports, livraisons, suivi des lots.</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="pomme.de1.png" alt="" class="service-potato">
+          <h3><span class="service-icon">💼</span> Service Commercial</h3>
+          <div class="contact-info">
+            <div><strong>Zone Nord Seine</strong> – Romain Cardinael</div>
+            <div><a href="tel:+33671023000">+33 6 71 02 30 00</a> – <a href="mailto:romain.cardinael@solana.de">romain.cardinael@solana.de</a></div>
+          </div>
+          <div class="contact-info">
+            <div><strong>Zone Nord Ouest</strong> – Etienne Rose</div>
+            <div><a href="tel:+33699871200">+33 6 99 87 12 00</a> – <a href="mailto:etienne.rose@solana.de">etienne.rose@solana.de</a></div>
+          </div>
+          <div class="contact-info">
+            <div><strong>Zone Sud-Ouest de Paris & Beauce</strong> – Samuel Boiret</div>
+            <div><a href="tel:+33665607122">+33 6 65 60 71 22</a> – <a href="mailto:samuel.boiret@solana.de">samuel.boiret@solana.de</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Solana France – Contacts équipes & support clients.
+  </footer>
+
+  <script>
+    // Bouton "Continuer" : on cache l'intro et on descend aux contacts
+    document.getElementById('introContinue').addEventListener('click', function () {
+      const intro = document.getElementById('intro');
+      intro.style.transition = 'opacity 0.6s ease';
+      intro.style.opacity = '0';
+      setTimeout(function(){ intro.style.display = 'none'; }, 600);
+      document.getElementById('contacts').scrollIntoView({behavior:'smooth'});
+    });
+
+    // Bouton dans le hero
+    document.getElementById('goContacts').addEventListener('click', function () {
+      document.getElementById('contacts').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
+
