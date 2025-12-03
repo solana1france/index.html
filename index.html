@@ -335,9 +335,105 @@
         gap:4px;
       }
     }
+    .intro-overlay{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#00b4d8 0,#0077b6 40%,#002b4a 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  overflow:hidden;
+  animation:introFadeIn .8s ease-out;
+}
+@keyframes introFadeIn{
+  from{opacity:0;transform:scale(1.02);}
+  to{opacity:1;transform:scale(1);}
+}
+.intro-content{
+  position:relative;
+  text-align:center;
+  color:#e0f7ff;
+}
+.intro-logo-main{
+  width:220px;
+  max-width:70%;
+  animation:logoDrop 1.2s ease-out forwards;
+}
+@keyframes logoDrop{
+  0%{transform:translateY(-80px) scale(.8);opacity:0;}
+  60%{transform:translateY(10px) scale(1.02);opacity:1;}
+  100%{transform:translateY(0) scale(1);}
+}
+.intro-rain{
+  position:absolute;
+  inset:-40vh -40vw 0;
+  pointer-events:none;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.35) 0,
+    rgba(255,255,255,.35) 2px,
+    transparent 2px,
+    transparent 12px
+  );
+  background-size:2px 20px;
+  opacity:.35;
+  animation:rainMove 1.5s linear infinite;
+}
+@keyframes rainMove{
+  from{transform:translateY(-40px);}
+  to{transform:translateY(40px);}
+}
+.intro-text{
+  margin-top:26px;
+  font-size:1.05rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.intro-btn{
+  margin-top:28px;
+  padding:12px 26px;
+  border-radius:999px;
+  border:none;
+  background:#ffffff;
+  color:#0077b6;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 10px 26px rgba(0,0,0,.4);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:transform .2s,box-shadow .2s;
+}
+.intro-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(0,0,0,.55);
+}
+
   </style>
 </head>
+  <script>
+  // Bouton "Continuer" : on cache l'intro et on descend aux contacts
+  document.getElementById('introContinue').addEventListener('click', function () {
+    const intro = document.getElementById('intro');
+    intro.style.transition = 'opacity 0.6s ease';
+    intro.style.opacity = '0';
+    setTimeout(function(){ intro.style.display = 'none'; }, 600);
+    document.getElementById('contacts').scrollIntoView({behavior:'smooth'});
+  });
+</script>
+
 <body>
+  <!-- INTRO ANIMEE AVANT LE SITE -->
+<div class="intro-overlay" id="intro">
+  <div class="intro-content">
+    <img src="logo-solana.png" alt="Solana France" class="intro-logo-main">
+    <div class="intro-rain"></div>
+    <p class="intro-text">Semences de pommes de terre · Innovation & proximité</p>
+    <button class="intro-btn" id="introContinue">Continuer vers les contacts</button>
+  </div>
+</div>
+
   <!-- HERO INTRO CLIENT -->
   <section class="hero" id="top">
     <div class="hero-inner">
