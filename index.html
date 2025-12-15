@@ -13,6 +13,24 @@
       overflow-x:hidden;
     }
 
+    /* ANIMATIONS GENERALES */
+    @keyframes heroTitleIn{
+      0%{opacity:0;transform:translateY(18px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
+    @keyframes heroSubIn{
+      0%{opacity:0;transform:translateY(12px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
+    @keyframes floatLogo{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+    }
+    @keyframes fadeUp{
+      0%{opacity:0;transform:translateY(16px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
+
     /* HERO / INTRO PRO CLIENTS */
     .hero{
       min-height:70vh;
@@ -57,10 +75,6 @@
       box-shadow:0 10px 30px rgba(0,0,0,.25);
       animation:floatLogo 4s ease-in-out infinite;
     }
-    @keyframes floatLogo{
-      0%,100%{transform:translateY(0);}
-      50%{transform:translateY(-10px);}
-    }
     .hero-kicker{
       font-size:.9rem;
       letter-spacing:.14em;
@@ -71,11 +85,13 @@
       font-size:2.4rem;
       line-height:1.15;
       margin:8px 0 14px;
+      animation:heroTitleIn .8s ease-out forwards;
     }
     .hero-sub{
       font-size:1rem;
       max-width:32rem;
       opacity:.9;
+      animation:heroSubIn .9s ease-out .1s forwards;
     }
     .hero-pills{
       display:flex;
@@ -91,6 +107,15 @@
       display:flex;
       align-items:center;
       gap:6px;
+      background:#ffffff10;
+      backdrop-filter:blur(10px);
+      transition:transform .18s,box-shadow .18s,background .18s;
+      cursor:default;
+    }
+    .pill:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 18px rgba(0,0,0,.25);
+      background:#ffffff20;
     }
 
     .hero-cta-row{
@@ -111,12 +136,30 @@
       box-shadow:0 10px 26px rgba(0,0,0,.35);
       background:#ffffff;
       color:#0077b6;
-      transition:transform .18s,box-shadow .18s;
+      transition:transform .14s ease-out,box-shadow .14s ease-out,background .14s;
+      position:relative;
+      overflow:hidden;
     }
     .hero-btn span{font-size:1.3rem;}
+    .hero-btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 10% 0,rgba(0,180,216,.18),transparent 50%);
+      opacity:0;
+      transition:opacity .18s;
+    }
     .hero-btn:hover{
-      transform:translateY(-2px);
+      transform:translateY(-2px) scale(1.02);
       box-shadow:0 16px 34px rgba(0,0,0,.45);
+      background:#f0f9ff;
+    }
+    .hero-btn:active{
+      transform:translateY(0) scale(.98);
+      box-shadow:0 6px 16px rgba(0,0,0,.4);
+    }
+    .hero-btn:hover::after{
+      opacity:1;
     }
     .hero-note{
       font-size:.85rem;
@@ -130,6 +173,7 @@
       backdrop-filter:blur(18px);
       box-shadow:0 14px 38px rgba(0,0,0,.35);
       border:1px solid #ffffff25;
+      animation:fadeUp .8s ease-out .15s forwards;
     }
     .side-title{
       font-size:1rem;
@@ -199,14 +243,16 @@
       border-radius:12px;
       padding:14px 16px;
       border:1px solid #e0e7ff;
-      transition:transform .18s,box-shadow .18s,border-color .18s;
+      transition:transform .18s,box-shadow .18s,border-color .18s,background .18s;
       cursor:pointer;
       overflow:hidden;
+      transform-origin:center;
     }
     .quick-item:hover{
-      transform:translateY(-3px);
+      transform:translateY(-3px) scale(1.01);
       box-shadow:0 10px 24px rgba(15,23,42,.14);
       border-color:#00b4d8;
+      background:#ffffff;
     }
     .quick-label{
       font-size:.78rem;
@@ -224,6 +270,9 @@
       text-decoration:none;
       font-size:.9rem;
     }
+    .quick-item a:hover{
+      text-decoration:underline;
+    }
     .quick-meta{
       font-size:.8rem;
       color:#64748b;
@@ -235,12 +284,12 @@
       bottom:-32px;
       width:80px;
       opacity:0;
-      transform:translate(10px,10px) scale(.6);
+      transform:translate(10px,10px) scale(.6) rotate(-4deg);
       transition:opacity .2s,transform .2s;
     }
     .quick-item:hover .quick-potato{
       opacity:1;
-      transform:translate(0,0) scale(1);
+      transform:translate(0,0) scale(1) rotate(6deg);
     }
 
     .services-grid-inner{
@@ -258,12 +307,20 @@
       border-left:1px solid #e0e7ff;
       border-right:1px solid #e0e7ff;
       border-bottom:1px solid #e0e7ff;
-      transition:transform .18s,box-shadow .18s;
+      transition:transform .18s,box-shadow .18s,background .18s;
       overflow:hidden;
+      opacity:0;
+      transform:translateY(24px);
+    }
+    .service-card.visible{
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .45s ease-out,transform .45s ease-out,box-shadow .18s,background .18s;
     }
     .service-card:hover{
       transform:translateY(-4px);
       box-shadow:0 12px 30px rgba(15,23,42,.16);
+      background:#ffffff;
     }
     .service-card h3{
       font-size:1.03rem;
@@ -285,10 +342,12 @@
       font-size:15px;
       flex-shrink:0;
       transform:scale(1);
-      transition:transform .2s;
+      transition:transform .2s,box-shadow .2s;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
     }
     .service-card:hover .service-icon{
       transform:scale(1.18);
+      box-shadow:0 7px 18px rgba(0,0,0,.35);
     }
     .contact-info{
       margin-bottom:10px;
@@ -300,6 +359,9 @@
     .contact-info a{
       color:#006ba3;
       text-decoration:none;
+    }
+    .contact-info a:hover{
+      text-decoration:underline;
     }
     .service-potato{
       position:absolute;
@@ -328,6 +390,7 @@
       }
       .hero{
         padding-top:24px;
+        min-height:60vh;
       }
       .header-inner{
         flex-direction:column;
@@ -405,11 +468,29 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      transition:transform .2s,box-shadow .2s;
+      transition:transform .2s,box-shadow .2s,background .2s;
+      position:relative;
+      overflow:hidden;
+    }
+    .intro-btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 0 0,rgba(0,180,216,.22),transparent 60%);
+      opacity:0;
+      transition:opacity .18s;
     }
     .intro-btn:hover{
       transform:translateY(-2px);
       box-shadow:0 16px 34px rgba(0,0,0,.55);
+      background:#f0f9ff;
+    }
+    .intro-btn:hover::after{
+      opacity:1;
+    }
+    .intro-btn:active{
+      transform:translateY(0) scale(.98);
+      box-shadow:0 6px 18px rgba(0,0,0,.55);
     }
   </style>
 </head>
@@ -478,7 +559,7 @@
         Pour un premier échange rapide, ces contacts vous orientent vers la bonne personne en interne.
       </p>
       <div class="quick-grid">
-        <div class="quick-item">
+        <div class="quick-item" onclick="location.href='tel:+33682363560'">
           <div class="quick-label">Direction</div>
           <div class="quick-name">Yannick Lefèvre – Président</div>
           <p><a href="tel:+33682363560">+33 6 82 36 35 60</a></p>
@@ -487,7 +568,7 @@
           <img src="pomme.de1.png" alt="" class="quick-potato">
         </div>
 
-        <div class="quick-item">
+        <div class="quick-item" onclick="location.href='tel:+33680258269'">
           <div class="quick-label">Production / Technique</div>
           <div class="quick-name">Service Production & Technique</div>
           <p><a href="tel:+33680258269">+33 6 80 25 82 69</a> – emmie.lopes@solana.de</p>
@@ -495,7 +576,7 @@
           <img src="pomme.de1.png" alt="" class="quick-potato">
         </div>
 
-        <div class="quick-item">
+        <div class="quick-item" onclick="location.href='mailto:logistique@solana.de'">
           <div class="quick-label">Logistique</div>
           <div class="quick-name">Service Logistique</div>
           <p><a href="mailto:logistique@solana.de">logistique@solana.de</a></p>
@@ -503,7 +584,7 @@
           <img src="pomme.de1.png" alt="" class="quick-potato">
         </div>
 
-        <div class="quick-item">
+        <div class="quick-item" onclick="location.href='mailto:contact.solanafrance@solana.de'">
           <div class="quick-label">Administratif / Achats</div>
           <div class="quick-name">Service Administratif & Achats</div>
           <p><a href="tel:+33675240549">+33 6 75 24 05 49</a></p>
@@ -512,7 +593,7 @@
           <img src="pomme.de1.png" alt="" class="quick-potato">
         </div>
 
-        <div class="quick-item">
+        <div class="quick-item" onclick="location.href='mailto:facture.solanafrance@solana.de'">
           <div class="quick-label">Facturation</div>
           <div class="quick-name">Service Facturation</div>
           <p><a href="mailto:facture.solanafrance@solana.de">facture.solanafrance@solana.de</a></p>
@@ -609,7 +690,19 @@
     document.getElementById('goContacts').addEventListener('click', function () {
       document.getElementById('contacts').scrollIntoView({behavior:'smooth'});
     });
+
+    // Apparition des cartes au scroll (IntersectionObserver)
+    const serviceCards = document.querySelectorAll('.service-card');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.2});
+
+    serviceCards.forEach(card=>observer.observe(card));
   </script>
 </body>
 </html>
-
